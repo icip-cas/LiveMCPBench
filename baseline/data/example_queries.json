@@ -1,0 +1,15 @@
+[
+  {
+    "task_id": "dda8ea55-629c-4ae8-ab87-0c81477ae615",
+    "Question": "I'm planning a trip to the Forbidden City in Beijing, show me where to park and what's interesting to do within 1km distance?",
+    "answers": "",
+    "category": "Travel",
+    "file_name": "",
+    "Annotator Metadata": {
+      "Steps": "1. convert the address of Location into precise geographic coordinates.\n2. find parking facilities within a 1-kilometer radius of Location, filtering for both surface and multi-storey parking options, and provide details such as capacity, fee structure, and access restrictions. \n3. discover nearby points of interest and amenities within the same radius, focusing on categories such as restaurants, shops, and tourist attractions.\n4. convert the coordinates of each identified parking facility and point of interest back into human-readable addresses to facilitate easy navigation and planning. ",
+      "Number of steps": "4",
+      "Tools": "1. geocode_address\n2. find_parking_facilities\n3. find_nearby_places\n4. reverse_geocode",
+      "Number of tools": "4"
+    }
+  }
+]

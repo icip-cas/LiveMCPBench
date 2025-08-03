@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Filesystem MCP Server",
+        "organization": "modelcontextprotocol",
+        "description": "Node.js server implementing Model Context Protocol (MCP) for filesystem operations.",
+        "web": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+        "config": {
+            "mcpServers": {
+                "filesystem": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@modelcontextprotocol/server-filesystem",
+                        "/"
+                    ]
+                }
+            }
+        },
+        "category": "File Access"
+    },
+    {
+        "name": "ArXiv MCP Server",
+        "organization": "blazickjp",
+        "description": "The ArXiv MCP Server provides a bridge between AI assistants and arXiv's research repository through the Model Context Protocol (MCP). It allows AI models to search for papers and access their content in a programmatic way.",
+        "web": "https://github.com/blazickjp/arxiv-mcp-server",
+        "config": {
+            "mcpServers": {
+                "arxiv-mcp-server": {
+                    "command": "uv",
+                    "args": [
+                        "tool",
+                        "run",
+                        "arxiv-mcp-server",
+                        "--storage-path",
+                        "~/files"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    }
+]

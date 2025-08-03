@@ -1,0 +1,29 @@
+[project]
+name = "all-mcps"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "backoff>=2.2.1",
+    "bs4>=0.0.2",
+    "cachetools>=6.1.0",
+    "colorlog>=6.9.0",
+    "gradio>=5.34.2",
+    "html2text>=2025.4.15",
+    "matplotlib>=3.10.3",
+    "mcp>=1.9.0",
+    "numpy>=2.2.6",
+    "openai>=1.83.0",
+    "pandas>=2.2.3",
+    "plotly>=6.2.0",
+    "psutil>=7.0.0",
+    "requests>=2.32.3",
+    "seaborn>=0.13.2",
+    "tabulate>=0.9.0",
+    "tqdm>=4.67.1",
+]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true

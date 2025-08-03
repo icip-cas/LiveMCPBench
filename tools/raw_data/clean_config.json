@@ -1,0 +1,559 @@
+{
+    "mcpServers": {
+        "fetch": {
+            "command": "uvx",
+            "args": [
+                "mcp-server-fetch"
+            ],
+            "env": {}
+        },
+        "12306-mcp": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "12306-mcp"
+            ],
+            "env": {}
+        },
+        "mcp-deepwiki": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "mcp-deepwiki@latest"
+            ],
+            "env": {}
+        },
+        "howtocook-mcp": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "howtocook-mcp"
+            ],
+            "env": {}
+        },
+        "sequential-thinking": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-sequential-thinking"
+            ],
+            "env": {}
+        },
+        "time": {
+            "command": "uvx",
+            "args": [
+                "mcp-server-time",
+                "--local-timezone=America/New_York"
+            ],
+            "env": {}
+        },
+        "memory": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-memory"
+            ],
+            "env": {}
+        },
+        "git": {
+            "command": "uvx",
+            "args": [
+                "mcp-server-git"
+            ],
+            "env": {}
+        },
+        "puppeteer": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-puppeteer"
+            ],
+            "env": {}
+        },
+        "excel": {
+            "command": "npx",
+            "args": [
+                "--yes",
+                "@negokaz/excel-mcp-server"
+            ],
+            "env": {
+                "EXCEL_MCP_PAGING_CELLS_LIMIT": "4000"
+            }
+        },
+        "trends-hub": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "mcp-trends-hub@1.6.2"
+            ],
+            "env": {}
+        },
+        "mcp-server-chart": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@antv/mcp-server-chart"
+            ],
+            "env": {}
+        },
+        "playwright": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@executeautomation/playwright-mcp-server"
+            ],
+            "env": {}
+        },
+        "Context7": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@upstash/context7-mcp"
+            ],
+            "env": {}
+        },
+        "word-document-server": {
+            "command": "uvx",
+            "args": [
+                "--from",
+                "office-word-mcp-server",
+                "word_mcp_server"
+            ],
+            "env": {}
+        },
+        "npx_fetch": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@tokenizin/mcp-npx-fetch"
+            ],
+            "env": {}
+        },
+        "yahoo-finance": {
+            "command": "uvx",
+            "args": [
+                "mcp-yahoo-finance"
+            ],
+            "env": {}
+        },
+        "Bazi": {
+            "command": "npx",
+            "args": [
+                "bazi-mcp"
+            ],
+            "env": {}
+        },
+        "okppt": {
+            "command": "uvx",
+            "args": [
+                "mcp-server-okppt"
+            ],
+            "env": {}
+        },
+        "youtube-transcript": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@kimtaeyoon83/mcp-server-youtube-transcript"
+            ],
+            "env": {}
+        },
+        "basic-memory": {
+            "command": "uvx",
+            "args": [
+                "basic-memory",
+                "mcp"
+            ],
+            "env": {}
+        },
+        "mindmap": {
+            "command": "uvx",
+            "args": [
+                "mindmap-mcp-server",
+                "--return-type",
+                "html"
+            ],
+            "env": {}
+        },
+        "biomcp": {
+            "command": "uv",
+            "args": [
+                "run",
+                "--with",
+                "biomcp-python",
+                "biomcp",
+                "run"
+            ],
+            "env": {}
+        },
+        "searxng": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@cablate/mcp-doc-forge"
+            ],
+            "env": {}
+        },
+        "wikipedia": {
+            "command": "uvx",
+            "args": [
+                "wikipedia-mcp"
+            ],
+            "env": {}
+        },
+        "datagov": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@melaodoidao/datagov-mcp-server"
+            ],
+            "env": {}
+        },
+        "mcp-crypto-price": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "mcp-crypto-price"
+            ],
+            "env": {}
+        },
+        "docker-mcp": {
+            "command": "uvx",
+            "args": [
+                "docker-mcp"
+            ],
+            "env": {}
+        },
+        "music-analysis": {
+            "command": "uvx",
+            "args": [
+                "-n",
+                "mcp-music-analysis"
+            ],
+            "env": {}
+        },
+        "pdf-reader-mcp": {
+            "command": "npx",
+            "args": [
+                "@sylphlab/pdf-reader-mcp"
+            ],
+            "env": {}
+        },
+        "kospi-kosdaq": {
+            "command": "uvx",
+            "args": [
+                "kospi_kosdaq_stock_server"
+            ],
+            "env": {}
+        },
+        "Asset Price MCP": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "asset-price-mcp"
+            ],
+            "env": {}
+        },
+        "hackernews": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@devabdultech/hn-mcp-server"
+            ],
+            "env": {}
+        },
+        "sitemap": {
+            "command": "uvx",
+            "args": [
+                "sitemap-mcp-server"
+            ],
+            "env": {
+                "TRANSPORT": "stdio"
+            }
+        },
+        "shadcn-ui-server": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "shadcn-ui-mcp-server"
+            ],
+            "env": {}
+        },
+        "whois": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@bharathvaj/whois-mcp@latest"
+            ],
+            "env": {}
+        },
+        "ygocdb": {
+            "command": "npx",
+            "args": [
+                "ygocdb-mcp-server"
+            ],
+            "env": {}
+        },
+        "mcp-github-trending": {
+            "command": "uvx",
+            "args": [
+                "mcp-github-trending"
+            ],
+            "env": {}
+        },
+        "mermaid-validator": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@rtuin/mcp-mermaid-validator@latest"
+            ],
+            "env": {}
+        },
+        "Ant Design Components": {
+            "command": "npx",
+            "args": [
+                "@jzone-mcp/antd-components-mcp"
+            ],
+            "env": {}
+        },
+        "magicuidesign_mcp": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@magicuidesign/mcp@latest"
+            ],
+            "env": {}
+        },
+        "MetaTagGenie": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "metatag-genie"
+            ],
+            "env": {}
+        },
+        "npm-sentinel-mcp": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@nekzus/mcp-server@latest"
+            ],
+            "env": {}
+        },
+        "maven-deps-server": {
+            "command": "npx",
+            "args": [
+                "mcp-maven-deps"
+            ],
+            "env": {}
+        },
+        "wuwa-mcp": {
+            "command": "uvx",
+            "args": [
+                "wuwa-mcp-server"
+            ],
+            "env": {}
+        },
+        "coin-flip": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@mcpfun/mcp-server-leetcode"
+            ],
+            "env": {}
+        },
+        "text-editor": {
+            "command": "uvx",
+            "args": [
+                "mcp-text-editor"
+            ],
+            "env": {}
+        },
+        "web3-research-mcp": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "web3-research-mcp@latest"
+            ],
+            "env": {}
+        },
+        "chess": {
+            "command": "uvx",
+            "args": [
+                "mcp-chess"
+            ],
+            "env": {}
+        },
+        "opgg-mcp": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "supergateway",
+                "--streamableHttp",
+                "https://mcp-api.op.gg/mcp"
+            ],
+            "env": {}
+        },
+        "osm-mcp-server": {
+            "command": "uvx",
+            "args": [
+                "osm-mcp-server"
+            ],
+            "env": {}
+        },
+        "mcp-simple-arxiv": {
+            "command": "uvx",
+            "args": [
+                "mcp-simple-arxiv==0.2.3",
+                "mcp-simple-arxiv"
+            ],
+            "env": {}
+        },
+        "airbnb": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@openbnb/mcp-server-airbnb",
+                "--ignore-robots-txt"
+            ],
+            "env": {}
+        },
+        "taskmanager": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@kazuph/mcp-taskmanager"
+            ],
+            "env": {}
+        },
+        "desktop-commander": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@wonderwhy-er/desktop-commander"
+            ],
+            "env": {}
+        },
+        "hugeicons": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@hugeicons/mcp-server"
+            ],
+            "env": {}
+        },
+        "duckduckgo-search": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "duckduckgo-mcp-server"
+            ],
+            "env": {}
+        },
+        "met-museum": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "metmuseum-mcp"
+            ],
+            "env": {}
+        },
+        "ppt": {
+            "command": "uvx",
+            "args": [
+                "--from",
+                "office-powerpoint-mcp-server",
+                "ppt_mcp_server"
+            ],
+            "env": {}
+        },
+        "calculator": {
+            "command": "uvx",
+            "args": [
+                "mcp-server-calculator"
+            ],
+            "env": {}
+        },
+        "painter": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "github:flrngel/mcp-painter"
+            ],
+            "env": {}
+        },
+        "filesystem": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                "./annotated_data/files"
+            ],
+            "env": {}
+        },
+        "arxiv-mcp-server": {
+            "command": "uv",
+            "args": [
+                "tool",
+                "run",
+                "arxiv-mcp-server",
+                "--storage-path",
+                "./annotated_data/files"
+            ],
+            "env": {}
+        },
+        "image-extractor": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "mcp-image-extractor"
+            ],
+            "env": {}
+        },
+        "yfmcp": {
+            "command": "uvx",
+            "args": [
+                "yfmcp@latest"
+            ],
+            "env": {}
+        },
+        "investor": {
+            "command": "uvx",
+            "args": [
+                "investor-agent"
+            ],
+            "env": {}
+        },
+        "weather": {
+            "command": "uvx",
+            "args": [
+                "--from",
+                "git+https://github.com/microagents/mcp-weather-free.git",
+                "mcp-weather-free"
+            ],
+            "env": {}
+        },
+        "random-number": {
+            "command": "uvx",
+            "args": [
+                "random-number-mcp"
+            ],
+            "env": {}
+        },
+        "exchange-rate-mcp": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@karashiiro/exchange-rate-mcp"
+            ],
+            "env": {}
+        },
+        "bing-cn-mcp": {
+            "command": "npx",
+            "args": [
+                "bing-cn-mcp"
+            ],
+            "env": {}
+        }
+    }
+}

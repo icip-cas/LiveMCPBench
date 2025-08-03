@@ -1,0 +1,12 @@
+Model	work	entertainment	travel	daily	financing	shopping	overall
+claude-sonnet-4-20250514_Qwen3-Embedding-0.6B	90.32	64.29	75.0	80.0	78.57	66.67	78.95
+claude-opus-4-20250514_Qwen3-Embedding-0.6B	80.65	64.29	66.67	86.67	64.29	33.33	70.53
+deepseek_deepseek-r1-0528_Qwen3-Embedding-0.6B	41.94	50.0	58.33	46.67	50.0	55.56	48.42
+qwen3-235b-a22b_Qwen3-Embedding-0.6B	54.84	35.71	41.67	53.33	50.0	44.44	48.42
+openai_gpt-4.1-mini_Qwen3-Embedding-0.6B	45.16	50.0	50.0	46.67	42.86	22.22	44.21
+qwen25_72b_int4_instruct_Qwen3-Embedding-0.6B	35.48	35.71	50.0	40.0	57.14	55.56	43.16
+deepseek_deepseek-chat-v3-0324_Qwen3-Embedding-0.6B	41.94	42.86	50.0	40.0	28.57	55.56	42.11
+models_gemini-2.5-pro_Qwen3-Embedding-0.6B	48.39	28.57	16.67	60.0	57.14	11.11	41.05
+openai_gpt-4.1_Qwen3-Embedding-0.6B	51.61	28.57	25.0	46.67	35.71	22.22	38.95
+qwen3-32b_Qwen3-Embedding-0.6B	29.03	14.29	25.0	53.33	28.57	33.33	30.53
+models_gemini-2.5-flash_Qwen3-Embedding-0.6B	22.58	21.43	16.67	20.0	21.43	0.0	18.95

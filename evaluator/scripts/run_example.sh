@@ -1,0 +1,1 @@
+uv run -m evaluator.llm_as_judge_baseline

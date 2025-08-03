@@ -1,0 +1,12 @@
+Model,human_agreement,success_rate
+human,100.0,70.53
+openai_gpt-4.1-mini,85.26,81.05
+qwen25_72b_int4_instruct,84.21,77.89
+deepseek_deepseek-chat-v3-0324,81.05,78.95
+qwen_qwen3-235b-a22b,74.74,57.89
+qwen_qwen3-32b,73.68,50.53
+models_gemini-2.5-pro,72.63,62.11
+claude-sonnet-4-20250514,71.58,73.68
+openai_gpt-4.1,71.58,52.63
+claude-opus-4-20250514,68.42,55.79
+deepseek_deepseek-r1-0528,58.95,35.79

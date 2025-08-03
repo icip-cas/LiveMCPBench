@@ -1,0 +1,1 @@
+uv run utils/connect_mcp_server.py --metadata_path "./tools/LiveMCPTool/all_config.json" --output_path "./tools/test/tools.json"

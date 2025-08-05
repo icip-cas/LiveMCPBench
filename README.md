@@ -1,4 +1,4 @@
-# LiveMCPBenchBench
+# LiveMCPBench
 
 This is the repository that contains source code for the [LiveMCPBench website](https://icip-cas.github.io/LiveMCPBench).
 

@@ -1,7 +1,7 @@
 [project]
-name = "all-mcps"
+name = "LiveMCPBench"
 version = "0.1.0"
-description = "Add your description here"
+description = "LiveMCPBench is a benchmark for evaluating the ability of agents to navigate and utilize a large-scale MCP toolset. It provides a comprehensive set of tasks that challenge agents to effectively use various tools in daily scenarios."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

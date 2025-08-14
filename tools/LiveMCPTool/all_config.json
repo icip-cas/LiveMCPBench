@@ -603,6 +603,8 @@
                 "sitemap": {
                     "command": "uvx",
                     "args": [
+                        "--with",
+                        "mcp==1.9.0",
                         "sitemap-mcp-server"
                     ],
                     "env": {

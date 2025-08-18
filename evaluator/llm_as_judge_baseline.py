@@ -128,7 +128,7 @@ def format_tool_descriptions(tool_map, server_name, tool_name):
 
 def get_args():
     parser = argparse.ArgumentParser(description="LLM as Judge Baseline")
-    parser.add_argument("--tools_path", type=str, default="./tools/fillter/tools.json")
+    parser.add_argument("--tools_path", type=str, default="./tools/LiveMCPTool/tools.json")
     parser.add_argument(
         "--trajectory_path",
         type=str,
@@ -210,7 +210,7 @@ if __name__ == "__main__":
                         ) or message.get("function_call", [])
                         for tool_call in message_tool_calls:
                             function = tool_call["function"]
-                            if function["name"] == "execute-tool":
+                            if function.get("name") == "execute-tool":
                                 tool_calls.append(function["arguments"])
                                 try:
                                     tool_config = json.loads(function["arguments"])

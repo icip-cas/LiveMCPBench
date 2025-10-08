@@ -196,3 +196,10 @@ If you find this project helpful, please use the following to cite it:
       url={https://arxiv.org/abs/2508.01780}, 
 }
 ```
+
+
+## Resources
+
+- [Open MCP Marketplace](https://github.com/AI-Agent-Hub/mcp-marketplace) An open source python-based MCP Client. Use mcp.config file and admin panel to manage MCP servers just as using IDE such as Claude, Cursor, etc. Run benchmarks through MCP APIs endpoints programmably.
+- [OneKey MCP Router](https://github.com/AI-Agent-Hub/mcp-marketplace/tree/main/app/onekey_mcp_router): Use OneKey MCP Router to simplify MCP access key registration process and access many commercial MCPs (Google Maps,Google Search,Tavily Search,Bing Image search,etc.) for benchmarking using a single key. Demo Benchmark Keys: DEEPNLP_ONEKEY_ROUTER_ACCESS=BETA_TEST_KEY_OCT_2025, [Get OneKey API key](https://www.deepnlp.org/agent/onekey-mcp-router)
+

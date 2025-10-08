@@ -1230,5 +1230,45 @@
             }
         },
         "category": "Discovery"
+    },
+    {
+        "name": "Google Maps MCP OneKey Router",
+        "organization": "Google",
+        "description": "Google Maps Location services, directions, and place details",
+        "web": "https://github.com/modelcontextprotocol/servers/tree/main/src/google-maps",
+        "config": {
+            "mcpServers": {
+                "deepnlp-onekey-google-maps": {
+                    "url": "https://agent.deepnlp.org/mcp?server_name=google-maps&onekey={DEEPNLP_ONEKEY_ROUTER_ACCESS}"
+                }
+            }
+        },
+        "category": "MAP"
+    }, {
+        "name": "AMAP Gaode MCP OneKey Router",
+        "organization": "Amap (GaoDe)",
+        "description": "高德地图为实现 LBS 服务与 LLM 更好的交互，高德地图 MCP Server 现已覆盖12大核心服务接口，提供全场景覆盖的地图服务，包括地理编码、逆地理编码、IP 定位、天气查询、骑行路径规划、步行路径规划、驾车路径规划、公交路径规划、距离测量、关键词搜索、周边搜索、详情搜索等。为进一步提高开发者接入效率与体验，高德地图开放平台为开发者提供了通用级 SSE 协议 MCP 服务解决方案。",
+        "web": "https://lbs.amap.com/api/mcp-server/summary",
+        "config": {
+            "mcpServers": {
+                "deepnlp-onekey-amap-maps": {
+                    "url": "https://agent.deepnlp.org/mcp?server_name=amap-maps-streamableHTTP&onekey={DEEPNLP_ONEKEY_ROUTER_ACCESS}"
+                }
+            }
+        },
+        "category": "MAP"
+    }, {
+        "name": "Baidu Map MCP OneKey Router",
+        "organization": "Baidu",
+        "description": "百度地图API现已全面兼容MCP协议，是国内首家兼容MCP协议的地图服务商。百度地图提供的MCP Server，包含10个符合MCP协议标准的API接口，涵盖逆地理编码、地点检索、路线规划等。",
+        "web": "https://lbsyun.baidu.com/faq/api?title=mcpserver/base",
+        "config": {
+            "mcpServers": {
+                "deepnlp-onekey-baidu-map": {
+                    "url": "https://agent.deepnlp.org/mcp?server_name=baidu-map&onekey={DEEPNLP_ONEKEY_ROUTER_ACCESS}"
+                }
+            }
+        },
+        "category": "MAP"
     }
 ]

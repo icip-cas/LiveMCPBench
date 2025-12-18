@@ -1,0 +1,1234 @@
+[
+    {
+        "name": "Fetch MCP Server",
+        "organization": "modelcontextprotocol",
+        "description": "A Model Context Protocol server that provides web content fetching capabilities. This server enables LLMs to retrieve and process content from web pages, converting HTML to markdown for easier consumption.",
+        "web": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
+        "config": {
+            "mcpServers": {
+                "fetch": {
+                    "command": "uvx",
+                    "args": [
+                        "mcp-server-fetch"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "12306-mcp",
+        "organization": "Joooook",
+        "description": "A 12306 ticket search server based on the Model Context Protocol (MCP). The server provides a simple API interface that allows users to search for 12306 tickets.",
+        "web": "https://github.com/Joooook/12306-mcp",
+        "config": {
+            "mcpServers": {
+                "12306-mcp": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "12306-mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Deepwiki MCP Server",
+        "organization": "regenrek",
+        "description": "This is an unofficial Deepwiki MCP Server\nIt takes a Deepwiki URL via MCP, crawls all relevant pages, converts them to Markdown, and returns either one document or a list by page.",
+        "web": "https://github.com/regenrek/deepwiki-mcp",
+        "config": {
+            "mcpServers": {
+                "mcp-deepwiki": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "mcp-deepwiki@latest"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "HowToCook-MCP Server",
+        "organization": "worryzyy",
+        "description": "An MCP (Model Context Protocol) server based on Anduin2017/HowToCook, allowing AI assistants to recommend recipes, plan meals, and solve the age-old question of \"what should I eat today?\"",
+        "web": "https://github.com/worryzyy/HowToCook-mcp",
+        "config": {
+            "mcpServers": {
+                "howtocook-mcp": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "howtocook-mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Sequential Thinking MCP Server",
+        "organization": "modelcontextprotocol",
+        "description": "An MCP server implementation that provides a tool for dynamic and reflective problem-solving through a structured thinking process.",
+        "web": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
+        "config": {
+            "mcpServers": {
+                "sequential-thinking": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@modelcontextprotocol/server-sequential-thinking"
+                    ]
+                }
+            }
+        },
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "Time MCP Server",
+        "organization": "modelcontextprotocol",
+        "description": "A Model Context Protocol server that provides time and timezone conversion capabilities. This server enables LLMs to get current time information and perform timezone conversions using IANA timezone names, with automatic system timezone detection.",
+        "web": "https://github.com/modelcontextprotocol/servers/tree/main/src/time",
+        "config": {
+            "mcpServers": {
+                "time": {
+                    "command": "uvx",
+                    "args": [
+                        "mcp-server-time",
+                        "--local-timezone=America/New_York"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Knowledge Graph Memory Server",
+        "organization": "modelcontextprotocol",
+        "description": "A basic implementation of persistent memory using a local knowledge graph. This lets Claude remember information about the user across chats.",
+        "web": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
+        "config": {
+            "mcpServers": {
+                "memory": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@modelcontextprotocol/server-memory"
+                    ]
+                }
+            }
+        },
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "mcp-server-git: A git MCP server",
+        "organization": "modelcontextprotocol",
+        "description": "A Model Context Protocol server for Git repository interaction and automation. This server provides tools to read, search, and manipulate Git repositories via Large Language Models.",
+        "web": "https://github.com/modelcontextprotocol/servers/tree/main/src/git",
+        "config": {
+            "mcpServers": {
+                "git": {
+                    "command": "uvx",
+                    "args": [
+                        "mcp-server-git"
+                    ]
+                }
+            }
+        },
+        "category": "Code"
+    },
+    {
+        "name": "Puppeteer",
+        "organization": "modelcontextprotocol",
+        "description": "A Model Context Protocol server that provides browser automation capabilities using Puppeteer. This server enables LLMs to interact with web pages, take screenshots, and execute JavaScript in a real browser environment.",
+        "web": "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/puppeteer",
+        "config": {
+            "mcpServers": {
+                "puppeteer": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@modelcontextprotocol/server-puppeteer"
+                    ]
+                }
+            }
+        },
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "Excel MCP Server",
+        "organization": "negokaz",
+        "description": "A Model Context Protocol (MCP) server that reads and writes MS Excel data.",
+        "web": "https://github.com/negokaz/excel-mcp-server",
+        "config": {
+            "mcpServers": {
+                "excel": {
+                    "command": "npx",
+                    "args": [
+                        "--yes",
+                        "@negokaz/excel-mcp-server"
+                    ],
+                    "env": {
+                        "EXCEL_MCP_PAGING_CELLS_LIMIT": "4000"
+                    }
+                }
+            }
+        },
+        "category": "File Access"
+    },
+    {
+        "name": "Trends Hub",
+        "organization": "baranwang",
+        "description": "基于 Model Context Protocol (MCP) 协议的全网热点趋势一站式聚合服务",
+        "web": "https://github.com/baranwang/mcp-trends-hub",
+        "config": {
+            "mcpServers": {
+                "trends-hub": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "mcp-trends-hub@1.6.2"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "MCP Server Chart",
+        "organization": "antvis",
+        "description": "A Model Context Protocol server for generating charts using AntV.",
+        "web": "https://github.com/antvis/mcp-server-chart",
+        "config": {
+            "mcpServers": {
+                "mcp-server-chart": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@antv/mcp-server-chart"
+                    ]
+                }
+            }
+        },
+        "category": "Visualization"
+    },
+    {
+        "name": "Playwright MCP Server",
+        "organization": "executeautomation",
+        "description": "A Model Context Protocol server that provides browser automation capabilities using Playwright. This server enables LLMs to interact with web pages, take screenshots, generate test code, web scraps the page and execute JavaScript in a real browser environment.",
+        "web": "https://github.com/executeautomation/mcp-playwright",
+        "config": {
+            "mcpServers": {
+                "playwright": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@executeautomation/playwright-mcp-server"
+                    ]
+                }
+            }
+        },
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "Context7 MCP - Up-to-date Code Docs For Any Prompt",
+        "organization": "upstash",
+        "description": "Context7 MCP pulls up-to-date, version-specific documentation and code examples straight from the source — and places them directly into your prompt.",
+        "web": "https://github.com/upstash/context7",
+        "config": {
+            "mcpServers": {
+                "Context7": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@upstash/context7-mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Code"
+    },
+    {
+        "name": "Office-Word-MCP-Server",
+        "organization": "GongRzhe",
+        "description": "A Model Context Protocol (MCP) server for creating, reading, and manipulating Microsoft Word documents. This server enables AI assistants to work with Word documents through a standardized interface, providing rich document editing capabilities.",
+        "web": "https://github.com/gongrzhe/office-word-mcp-server",
+        "config": {
+            "mcpServers": {
+                "word-document-server": {
+                    "command": "uvx",
+                    "args": [
+                        "--from",
+                        "office-word-mcp-server",
+                        "word_mcp_server"
+                    ]
+                }
+            }
+        },
+        "category": "File Access"
+    },
+    {
+        "name": "MCP NPX Fetch",
+        "organization": "tokenizin-agency",
+        "description": "A powerful MCP server for fetching and transforming web content into various formats (HTML, JSON, Markdown, Plain Text) with ease.",
+        "web": "https://github.com/tokenizin-agency/mcp-npx-fetch",
+        "config": {
+            "mcpServers": {
+                "npx_fetch": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@tokenizin/mcp-npx-fetch"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "MCP Yahoo Finance",
+        "organization": "maxscheijen",
+        "description": "A Model Context Protocol (MCP) server for Yahoo Finance interaction. This server provides tools to get pricing, company information and more.",
+        "web": "https://github.com/maxscheijen/mcp-yahoo-finance",
+        "config": {
+            "mcpServers": {
+                "yahoo-finance": {
+                    "command": "uvx",
+                    "args": [
+                        "mcp-yahoo-finance"
+                    ]
+                }
+            }
+        },
+        "category": "Finance"
+    },
+    {
+        "name": "Bazi MCP (八字 MCP) by Cantian AI",
+        "organization": "cantian-ai",
+        "description": "Unlock precise Bazi insights with the Bazi MCP, the first AI-powered Bazi calculator. Built to address inaccuracies in existing AI fortune-telling tools like GPT and DeepSeek, our MCP delivers reliable Bazi data for personality analysis, destiny forecasting, and more.",
+        "web": "https://github.com/cantian-ai/bazi-mcp",
+        "config": {
+            "mcpServers": {
+                "Bazi": {
+                    "command": "npx",
+                    "args": [
+                        "bazi-mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Entertainment"
+    },
+    {
+        "name": "MCP OKPPT Server",
+        "organization": "NeekChaw",
+        "description": "一个基于Model Context Protocol (MCP)的服务器工具，专门用于将SVG图像插入到PowerPoint演示文稿中。它能够保留SVG的矢量特性，确保在PowerPoint中显示的图像保持高品质和可缩放性。",
+        "web": "https://github.com/NeekChaw/mcp-server-okppt",
+        "config": {
+            "mcpServers": {
+                "okppt": {
+                    "command": "uvx",
+                    "args": [
+                        "mcp-server-okppt"
+                    ]
+                }
+            }
+        },
+        "category": "Visualization"
+    },
+    {
+        "name": "YouTube Transcript Server",
+        "organization": "kimtaeyoon83",
+        "description": "A Model Context Protocol server that enables retrieval of transcripts from YouTube videos. This server provides direct access to video captions and subtitles through a simple interface.",
+        "web": "https://github.com/kimtaeyoon83/mcp-server-youtube-transcript",
+        "config": {
+            "mcpServers": {
+                "youtube-transcript": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@kimtaeyoon83/mcp-server-youtube-transcript"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Basic Memory",
+        "organization": "basicmachines-co",
+        "description": "Basic Memory lets you build persistent knowledge through natural conversations with Large Language Models (LLMs) like Claude, while keeping everything in simple Markdown files on your computer. It uses the Model Context Protocol (MCP) to enable any compatible LLM to read and write to your local knowledge base.",
+        "web": "https://github.com/basicmachines-co/basic-memory",
+        "config": {
+            "mcpServers": {
+                "basic-memory": {
+                    "command": "uvx",
+                    "args": [
+                        "basic-memory",
+                        "mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "Mindmap MCP Server",
+        "organization": "YuChenSSR",
+        "description": "A Model Context Protocol (MCP) server for converting Markdown content to interactive mindmaps.",
+        "web": "https://github.com/YuChenSSR/mindmap-mcp-server",
+        "config": {
+            "mcpServers": {
+                "mindmap": {
+                    "command": "uvx",
+                    "args": [
+                        "mindmap-mcp-server",
+                        "--return-type",
+                        "html"
+                    ]
+                }
+            }
+        },
+        "category": "Visualization"
+    },
+    {
+        "name": "BioMCP: Biomedical Model Context Protocol",
+        "organization": "genomoncology",
+        "description": "BioMCP is an open source (MIT License) toolkit that empowers AI assistants and agents with specialized biomedical knowledge. Built following the Model Context Protocol (MCP), it connects AI systems to authoritative biomedical data sources, enabling them to answer questions about clinical trials, scientific literature, and genomic variants with precision and depth.",
+        "web": "https://github.com/genomoncology/biomcp",
+        "config": {
+            "mcpServers": {
+                "biomcp": {
+                    "command": "uv",
+                    "args": [
+                        "run",
+                        "--with",
+                        "biomcp-python",
+                        "biomcp",
+                        "run"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Simple Document Processing MCP Server",
+        "organization": "cablate",
+        "description": "A powerful Model Context Protocol (MCP) server providing comprehensive document processing capabilities.",
+        "web": "https://github.com/cablate/mcp-doc-forge",
+        "config": {
+            "mcpServers": {
+                "searxng": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@cablate/mcp-doc-forge"
+                    ]
+                }
+            }
+        },
+        "category": "File Access"
+    },
+    {
+        "name": "Wikipedia MCP Server",
+        "organization": "cablate",
+        "description": "A Model Context Protocol (MCP) server that retrieves information from Wikipedia to provide context to Large Language Models (LLMs). This tool helps AI assistants access factual information from Wikipedia to ground their responses in reliable sources.",
+        "web": "https://github.com/Rudra-ravi/wikipedia-mcp",
+        "config": {
+            "mcpServers": {
+                "wikipedia": {
+                    "command": "uvx",
+                    "args": [
+                        "wikipedia-mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Data.gov MCP Server",
+        "organization": "melaodoidao",
+        "description": "An MCP server for accessing data from Data.gov, providing tools and resources for interacting with government datasets.",
+        "web": "https://github.com/melaodoidao/datagov-mcp-server",
+        "config": {
+            "mcpServers": {
+                "datagov": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@melaodoidao/datagov-mcp-server"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Crypto Price & Market Analysis MCP Server",
+        "organization": "truss44",
+        "description": "A Model Context Protocol (MCP) server that provides comprehensive cryptocurrency analysis using the CoinCap API. This server offers real-time price data, market analysis, and historical trends through an easy-to-use interface.",
+        "web": "https://github.com/truss44/mcp-crypto-price",
+        "config": {
+            "mcpServers": {
+                "mcp-crypto-price": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "mcp-crypto-price"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "docker-mcp",
+        "organization": "QuantGeekDev",
+        "description": "A powerful Model Context Protocol (MCP) server for Docker operations, enabling seamless container and compose stack management through Claude AI.",
+        "web": "https://github.com/QuantGeekDev/docker-mcp",
+        "config": {
+            "mcpServers": {
+                "docker-mcp": {
+                    "command": "uvx",
+                    "args": [
+                        "docker-mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Code"
+    },
+    {
+        "name": "MCP Music Analysis",
+        "organization": "hugohow",
+        "description": "This repository contains a Model Context Provider (MCP) that uses MCP and librosa for audio analysis on audio in local, youtube link, or audio link.",
+        "web": "https://github.com/hugohow/mcp-music-analysis",
+        "config": {
+            "mcpServers": {
+                "music-analysis": {
+                    "command": "uvx",
+                    "args": [
+                        "-n",
+                        "mcp-music-analysis"
+                    ]
+                }
+            }
+        },
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "PDF Reader MCP Server",
+        "organization": "sylphxltd",
+        "description": "Empower your AI agents (like Cline) with the ability to securely read and extract information (text, metadata, page count) from PDF files within your project context using a single, flexible tool.",
+        "web": "https://github.com/sylphxltd/pdf-reader-mcp",
+        "config": {
+            "mcpServers": {
+                "pdf-reader-mcp": {
+                    "command": "npx",
+                    "args": [
+                        "@sylphlab/pdf-reader-mcp"
+                    ],
+                    "name": "PDF Reader (npx)"
+                }
+            }
+        },
+        "category": "File Access"
+    },
+    {
+        "name": "kospi-kosdaq-stock-server",
+        "organization": "dragon1086",
+        "description": "An MCP server that provides KOSPI/KOSDAQ stock data using FastMCP.",
+        "web": "https://github.com/dragon1086/kospi-kosdaq-stock-server",
+        "config": {
+            "mcpServers": {
+                "kospi-kosdaq": {
+                    "command": "uvx",
+                    "args": [
+                        "kospi_kosdaq_stock_server"
+                    ]
+                }
+            }
+        },
+        "category": "Finance"
+    },
+    {
+        "name": "Asset Price MCP Server (asset-price-mcp)",
+        "organization": "mk965",
+        "description": "A Model Context Protocol server for retrieving and displaying current asset price information. This server provides tools to fetch real-time price information for various asset (including precious metals and cryptocurrencies), making it easy for large language models to access and display this data.",
+        "web": "https://github.com/mk965/asset-price-mcp",
+        "config": {
+            "mcpServers": {
+                "Asset_Price_MCP": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "asset-price-mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Finance"
+    },
+    {
+        "name": "Hacker News MCP Server",
+        "organization": "devabdultech",
+        "description": " Official Hacker News MCP Server - Adds powerful Hacker News integration to Cursor, Claude, and any other LLM clients. Access stories, comments, user profiles, and search functionality through the Model Context Protocol.",
+        "web": "https://github.com/devabdultech/hn-mcp",
+        "config": {
+            "mcpServers": {
+                "hackernews": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@devabdultech/hn-mcp-server"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Sitemap MCP Server",
+        "organization": "mugoosse",
+        "description": "Discover website architecture and analyze site structure by fetching, parsing, and visualizing sitemaps from any URL. Uncover hidden pages and extract organized hierarchies without manual exploration.",
+        "web": "https://github.com/mugoosse/sitemap-mcp-server",
+        "config": {
+            "mcpServers": {
+                "sitemap": {
+                    "command": "uvx",
+                    "args": [
+                        "--with",
+                        "mcp==1.9.0",
+                        "sitemap-mcp-server"
+                    ],
+                    "env": {
+                        "TRANSPORT": "stdio"
+                    }
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "shadcn-ui MCP Server",
+        "organization": "ymadd",
+        "description": "This is a TypeScript-based MCP server that provides reference information for shadcn/ui components. It implements a Model Context Protocol (MCP) server that helps AI assistants access shadcn/ui component documentation and examples.",
+        "web": "https://github.com/ymadd/shadcn-ui-mcp-server",
+        "config": {
+            "mcpServers": {
+                "shadcn-ui-server": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "shadcn-ui-mcp-server"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Whois MCP",
+        "organization": "bharathvaj-ganesan",
+        "description": "Model Context Protocol server for whois lookups.",
+        "web": "https://github.com/bharathvaj-ganesan/whois-mcp",
+        "config": {
+            "mcpServers": {
+                "whois": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@bharathvaj/whois-mcp@latest"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Baige (ygocdb.com) MCP Server",
+        "organization": "lieyanqzu",
+        "description": "A server based on Model Context Protocol (MCP) for interacting with the Baige (ygocdb.com) API. Provides a set of tools for querying Yu-Gi-Oh! card information in Chinese.",
+        "web": "https://github.com/lieyanqzu/ygocdb-mcp",
+        "config": {
+            "mcpServers": {
+                "ygocdb": {
+                    "command": "npx",
+                    "args": [
+                        "ygocdb-mcp-server"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "mcp-github-trending MCP Server",
+        "organization": "hetaoBackend",
+        "description": "A MCP server that provides access to GitHub trending repositories and developers data through a simple API interface.",
+        "web": "https://github.com/hetaoBackend/mcp-github-trending",
+        "config": {
+            "mcpServers": {
+                "mcp-github-trending": {
+                    "command": "uvx",
+                    "args": [
+                        "mcp-github-trending"
+                    ]
+                }
+            }
+        },
+        "category": "Code"
+    },
+    {
+        "name": "MCP Server: Mermaid Validator",
+        "organization": "rtuin",
+        "description": "A Model Context Protocol server that validates and renders Mermaid diagrams. This server enables LLMs to validate and render Mermaid diagrams.",
+        "web": "https://github.com/rtuin/mcp-mermaid-validator",
+        "config": {
+            "mcpServers": {
+                "mermaid-validator": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@rtuin/mcp-mermaid-validator@latest"
+                    ]
+                }
+            }
+        },
+        "category": "Code"
+    },
+    {
+        "name": "Ant Design Components MCP Service",
+        "organization": "zhixiaoqiang",
+        "description": "A Model Context Protocol (MCP) server that provides Ant Design component documentation to large language models (LLMs) like Claude. This server allows LLMs to explore and understand Ant Design components through a set of dedicated tools.",
+        "web": "https://github.com/zhixiaoqiang/antd-components-mcp",
+        "config": {
+            "mcpServers": {
+                "Ant Design Components": {
+                    "command": "npx",
+                    "args": [
+                        "@jzone-mcp/antd-components-mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Code"
+    },
+    {
+        "name": "magicuidesign_mcp",
+        "description": "Official ModelContextProtocol (MCP) server for Magic UI.",
+        "web": "https://github.com/magicuidesign/mcp",
+        "config": {
+            "mcpServers": {
+                "magicuidesign_mcp": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@magicuidesign/mcp@latest"
+                    ]
+                }
+            }
+        },
+        "category": "Code"
+    },
+    {
+        "name": "MetaTag Genie",
+        "description": "MetaTag Genie 是一个 macOS Stdio MCP 服务，专为写入图片元数据以增强 Spotlight 搜索而设计。该服务可被 AI 代理或其他需要本地管理图片元数据的应用程序调用，通过标准输入输出（Stdio）与客户端通信，提供符合 MCP (Machine Comprehension Protocol) 规范的接口。",
+        "web": "https://github.com/terryso/meta_tag_genie",
+        "config": {
+            "mcpServers": {
+                "MetaTagGenie": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "metatag-genie"
+                    ]
+                }
+            }
+        },
+        "category": "Code"
+    },
+    {
+        "name": "NPM Sentinel MCP",
+        "description": "A powerful Model Context Protocol (MCP) server that revolutionizes NPM package analysis through AI. Built to integrate with Claude and Anthropic AI, it provides real-time intelligence on package security, dependencies, and performance. This MCP server delivers instant insights and smart analysis to safeguard and optimize your npm ecosystem, making package management decisions faster and safer for modern development workflows.",
+        "web": "https://github.com/nekzus/npm-sentinel-mcp",
+        "config": {
+            "mcpServers": {
+                "npm-sentinel-mcp": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@nekzus/mcp-server@latest"
+                    ]
+                }
+            }
+        },
+        "category": "Code"
+    },
+    {
+        "name": "Maven Dependencies MCP Server",
+        "description": "An MCP (Model Context Protocol) server that provides tools for checking Maven dependency versions. This server enables LLMs to verify Maven dependencies and retrieve their latest versions from Maven Central Repository.",
+        "web": "https://github.com/Bigsy/maven-mcp-server",
+        "config": {
+            "mcpServers": {
+                "maven-deps-server": {
+                    "command": "npx",
+                    "args": [
+                        "mcp-maven-deps"
+                    ]
+                }
+            }
+        },
+        "category": "Code"
+    },
+    {
+        "name": "鸣潮 MCP Server",
+        "description": "一个 Model Context Protocol (MCP) 服务器，用于获取《鸣潮》游戏的角色和声骸信息，并以 Markdown 格式返回，方便大型语言模型使用。",
+        "web": "https://github.com/jacksmith3888/wuwa-mcp-server",
+        "config": {
+            "mcpServers": {
+                "wuwa-mcp": {
+                    "command": "uvx",
+                    "args": [
+                        "wuwa-mcp-server"
+                    ]
+                }
+            }
+        },
+        "category": "Entertainment"
+    },
+    {
+        "name": "MCP Server LeetCode",
+        "description": "A Model Context Protocol (MCP) server for LeetCode that enables AI assistants to access LeetCode problems, user information, and contest data.",
+        "web": "https://github.com/doggybee/mcp-server-leetcode",
+        "config": {
+            "mcpServers": {
+                "coin-flip": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@mcpfun/mcp-server-leetcode"
+                    ]
+                }
+            }
+        },
+        "category": "Code"
+    },
+    {
+        "name": "MCP Text Editor Server",
+        "description": "A Model Context Protocol (MCP) server that provides line-oriented text file editing capabilities through a standardized API. Optimized for LLM tools with efficient partial file access to minimize token usage.",
+        "web": "https://github.com/tumf/mcp-text-editor",
+        "config": {
+            "mcpServers": {
+                "text-editor": {
+                    "command": "uvx",
+                    "args": [
+                        "mcp-text-editor"
+                    ]
+                }
+            }
+        },
+        "category": "File Access"
+    },
+    {
+        "name": "Web3 Research MCP",
+        "description": "Deep Research for crypto - free & fully local 🧠",
+        "web": "https://github.com/aaronjmars/web3-research-mcp",
+        "config": {
+            "mcpServers": {
+                "web3-research-mcp": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "web3-research-mcp@latest"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "MCP Chess Server",
+        "description": "This MCP let's you play chess against any LLM.",
+        "web": "https://github.com/jiayao/mcp-chess",
+        "config": {
+            "mcpServers": {
+                "chess": {
+                    "command": "uvx",
+                    "args": [
+                        "mcp-chess"
+                    ]
+                }
+            }
+        },
+        "category": "Entertainment"
+    },
+    {
+        "name": "OP.GG MCP Server",
+        "description": "This MCP server provides AI agents with access to OP.GG data through a standardized interface. It offers a simple way to connect to our remote server (https://mcp-api.op.gg/mcp), allowing for easy installation and immediate access to OP.GG data in a format that's easily consumable by AI models and agent frameworks.",
+        "web": "https://github.com/opgginc/opgg-mcp",
+        "config": {
+            "mcpServers": {
+                "opgg-mcp": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "supergateway",
+                        "--streamableHttp",
+                        "https://mcp-api.op.gg/mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Entertainment"
+    },
+    {
+        "name": "OpenStreetMap (OSM) MCP Server",
+        "description": "An OpenStreetMap MCP server implementation that enhances LLM capabilities with location-based services and geospatial data.",
+        "web": "https://github.com/jagan-shanmugam/open-streetmap-mcp",
+        "config": {
+            "mcpServers": {
+                "osm-mcp-server": {
+                    "command": "uvx",
+                    "args": [
+                        "osm-mcp-server"
+                    ]
+                }
+            }
+        },
+        "category": "Location"
+    },
+    {
+        "name": "mcp-simple-arxiv",
+        "description": "An MCP server that provides access to arXiv papers through their API.",
+        "web": "https://github.com/andybrandt/mcp-simple-arxiv",
+        "config": {
+            "mcpServers": {
+                "mcp-simple-arxiv": {
+                    "command": "uvx",
+                    "args": [
+                        "mcp-simple-arxiv==0.2.3",
+                        "mcp-simple-arxiv"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Airbnb MCP Server",
+        "description": "MCP Server for searching Airbnb and get listing details.",
+        "web": "https://github.com/reading-plus-ai/mcp-server-deep-research",
+        "config": {
+            "mcpServers": {
+                "airbnb": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@openbnb/mcp-server-airbnb",
+                        "--ignore-robots-txt"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "MCP TaskManager",
+        "description": "Model Context Protocol server for Task Management. This allows Claude Desktop (or any MCP client) to manage and execute tasks in a queue-based system.",
+        "web": "https://github.com/kazuph/mcp-taskmanager",
+        "config": {
+            "mcpServers": {
+                "taskmanager": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@kazuph/mcp-taskmanager"
+                    ]
+                }
+            }
+        },
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "Desktop Commander MCP",
+        "description": "Work with code and text, run processes, and automate tasks, going far beyond other AI editors - without API token costs.",
+        "web": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
+        "config": {
+            "mcpServers": {
+                "desktop-commander": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@wonderwhy-er/desktop-commander"
+                    ]
+                }
+            }
+        },
+        "category": "File Access"
+    },
+    {
+        "name": "Hugeicons MCP Server",
+        "description": "This is a TypeScript-based MCP server that provides tools and resources for integrating Hugeicons into various platforms. It implements a Model Context Protocol (MCP) server that helps AI assistants provide accurate guidance for using Hugeicons.",
+        "web": "https://github.com/hugeicons/mcp-server",
+        "config": {
+            "mcpServers": {
+                "hugeicons": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@hugeicons/mcp-server"
+                    ]
+                }
+            }
+        },
+        "category": "Visualization"
+    },
+    {
+        "name": "duckduckgo-search MCP Server",
+        "description": "A Model Context Protocol server for DuckDuckGo Search",
+        "web": "https://github.com/zhsama/duckduckgo-mcp-server",
+        "config": {
+            "mcpServers": {
+                "duckduckgo-search": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "duckduckgo-mcp-server"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Met Museum MCP Server",
+        "description": "A Model Context Protocol (MCP) server that provides access to the Metropolitan Museum of Art Collection through natural language interactions. This server allows AI models to search The Met's art collection and have art works available as a Resource.",
+        "web": "https://github.com/mikechao/metmuseum-mcp",
+        "config": {
+            "mcpServers": {
+                "met-museum": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "metmuseum-mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Office-PowerPoint-MCP-Server",
+        "description": "A comprehensive MCP (Model Context Protocol) server for PowerPoint manipulation using python-pptx. Version 2.0 provides 32 powerful tools organized into 11 specialized modules, offering complete PowerPoint creation, management, and professional design capabilities. The server features a modular architecture with enhanced parameter handling, intelligent operation selection, and comprehensive error handling.",
+        "web": "https://github.com/GongRzhe/Office-PowerPoint-MCP-Server",
+        "config": {
+            "mcpServers": {
+                "ppt": {
+                    "command": "uvx",
+                    "args": [
+                        "--from",
+                        "office-powerpoint-mcp-server",
+                        "ppt_mcp_server"
+                    ]
+                }
+            }
+        },
+        "category": "Visualization"
+    },
+    {
+        "name": "Calculator MCP Server",
+        "description": "A Model Context Protocol server for calculating. This server enables LLMs to use calculator for precise numerical calculations.",
+        "web": "https://github.com/githejie/mcp-server-calculator",
+        "config": {
+            "mcpServers": {
+                "calculator": {
+                    "command": "uvx",
+                    "args": [
+                        "mcp-server-calculator"
+                    ]
+                }
+            }
+        },
+        "category": "Miscellaneous"
+    },
+    {
+        "name": "Drawing MCP Server",
+        "description": "A Model Context Protocol (MCP) server that provides drawing capabilities for AI assistants.",
+        "web": "https://github.com/flrngel/mcp-painter",
+        "config": {
+            "mcpServers": {
+                "painter": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "github:flrngel/mcp-painter"
+                    ]
+                }
+            }
+        },
+        "category": "Visualization"
+    },
+    {
+        "name": "Filesystem MCP Server",
+        "organization": "modelcontextprotocol",
+        "description": "Node.js server implementing Model Context Protocol (MCP) for filesystem operations.",
+        "web": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+        "config": {
+            "mcpServers": {
+                "filesystem": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@modelcontextprotocol/server-filesystem@2025.8.18",
+                        "/"
+                    ]
+                }
+            }
+        },
+        "category": "File Access"
+    },
+    {
+        "name": "ArXiv MCP Server",
+        "organization": "blazickjp",
+        "description": "The ArXiv MCP Server provides a bridge between AI assistants and arXiv's research repository through the Model Context Protocol (MCP). It allows AI models to search for papers and access their content in a programmatic way.",
+        "web": "https://github.com/blazickjp/arxiv-mcp-server",
+        "config": {
+            "mcpServers": {
+                "arxiv-mcp-server": {
+                    "command": "uv",
+                    "args": [
+                        "tool",
+                        "run",
+                        "arxiv-mcp-server",
+                        "--storage-path",
+                        "./annotated_data/files"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "MCP Image Extractor",
+        "description": "MCP server for extracting and converting images to base64 for LLM analysis.",
+        "web": "https://github.com/ifmelate/mcp-image-extractor",
+        "config": {
+            "mcpServers": {
+                "image-extractor": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "mcp-image-extractor"
+                    ]
+                }
+            }
+        },
+        "category": "Visualization"
+    },
+    {
+        "name": "Yahoo Finance MCP Server",
+        "description": "A simple MCP server for Yahoo Finance using yfinance. This server provides a set of tools to fetch stock data, news, and other financial information.",
+        "web": "https://github.com/narumiruna/yfinance-mcp",
+        "config": {
+            "mcpServers": {
+                "yfmcp": {
+                    "command": "uvx",
+                    "args": [
+                        "yfmcp@latest"
+                    ]
+                }
+            }
+        },
+        "category": "Finance"
+    },
+    {
+        "name": "investor-agent: A Financial Analysis MCP Server",
+        "description": "The investor-agent is a Model Context Protocol (MCP) server that provides comprehensive financial insights and analysis to Large Language Models. It leverages real-time market data, fundamental and technical analysis to deliver.",
+        "web": "https://github.com/ferdousbhai/investor-agent",
+        "config": {
+            "mcpServers": {
+                "investor": {
+                    "command": "uvx",
+                    "args": [
+                        "investor-agent"
+                    ]
+                }
+            }
+        },
+        "category": "Finance"
+    },
+    {
+        "name": "MCP Weather Free",
+        "description": "A Model Context Protocol (MCP) server that provides weather data using the free Open-Meteo API. No API key required!",
+        "web": "https://github.com/microagents/mcp-weather-free",
+        "config": {
+            "mcpServers": {
+                "weather": {
+                    "command": "uvx",
+                    "args": [
+                        "--from",
+                        "git+https://github.com/microagents/mcp-weather-free.git",
+                        "mcp-weather-free"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    },
+    {
+        "name": "Random Number MCP",
+        "description": "Essential random number generation utilities from the Python standard library, including pseudorandom and cryptographically secure operations for integers, floats, weighted selections, list shuffling, and secure token generation.",
+        "web": "https://github.com/zazencodes/random-number-mcp",
+        "config": {
+            "mcpServers": {
+                "random-number": {
+                    "command": "uvx",
+                    "args": [
+                        "random-number-mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Entertainment"
+    },
+    {
+        "name": "Exchange Rate MCP Server",
+        "description": "This is a Model Context Protocol (MCP) server that provides access to exchange rate data from the Norges Bank API.",
+        "web": "https://github.com/karashiiro/exchange-rate-mcp",
+        "config": {
+            "mcpServers": {
+                "exchange-rate-mcp": {
+                    "command": "npx",
+                    "args": [
+                        "-y",
+                        "@karashiiro/exchange-rate-mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Finance"
+    },
+    {
+        "name": "Bing_CN_MCP",
+        "description": "一个基于 MCP (Model Context Protocol) 的中文必应搜索工具，可以直接通过 Claude 或其他支持 MCP 的 AI 来搜索必应并获取网页内容。",
+        "web": "https://github.com/yan5236/bing-cn-mcp-server",
+        "config": {
+            "mcpServers": {
+                "bing-cn-mcp": {
+                    "command": "npx",
+                    "args": [
+                        "bing-cn-mcp"
+                    ]
+                }
+            }
+        },
+        "category": "Discovery"
+    }
+]

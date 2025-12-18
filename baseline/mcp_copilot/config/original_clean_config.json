@@ -549,6 +549,13 @@
                 "@karashiiro/exchange-rate-mcp"
             ],
             "env": {}
+        },
+        "bing-cn-mcp": {
+            "command": "npx",
+            "args": [
+                "bing-cn-mcp"
+            ],
+            "env": {}
         }
     }
 }

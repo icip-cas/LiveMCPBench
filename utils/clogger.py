@@ -1,7 +1,19 @@
-import colorlog
 import logging
-import pathlib
 import os
+import pathlib
+
+import colorlog
+
+
+class BlockJSONRPCParseError(logging.Filter):
+    def filter(self, record: logging.LogRecord) -> bool:
+        msg = record.getMessage()
+        if (
+            record.name == "mcp.client.stdio"
+            and "Failed to parse JSONRPC message from server" in msg
+        ):
+            return False
+        return True
 
 
 def _set_logger(
@@ -35,12 +47,14 @@ def _set_logger(
     file_handler = logging.FileHandler(exp_dir / file_name, encoding="utf-8", mode="w")
     file_handler.setLevel(logging_level)  # same level as console outputs
     file_handler.setFormatter(file_formatter)
+    file_handler.addFilter(BlockJSONRPCParseError())
     if Filter is not None:
         file_handler.addFilter(Filter())
     # output handler
     stream_handler = logging.StreamHandler()
     stream_handler.setLevel(logging_level_stdout)
     stream_handler.setFormatter(formatter)
+    stream_handler.addFilter(BlockJSONRPCParseError())
     if Filter is not None:
         stream_handler.addFilter(Filter())
     # setup root logger
@@ -53,6 +67,7 @@ def _set_logger(
     root_logger.setLevel(logging_level)
     root_logger.addHandler(file_handler)
     root_logger.addHandler(stream_handler)
+    root_logger.addFilter(BlockJSONRPCParseError())
     if Filter is not None:
         root_logger.addFilter(Filter())
     # setup openai logger (don't go below INFO verbosity)

@@ -3,8 +3,8 @@ import json
 import logging
 import os
 import pathlib
-from collections import defaultdict
 import re
+from collections import defaultdict
 
 import dotenv
 from tqdm import tqdm
@@ -231,14 +231,18 @@ if __name__ == "__main__":
             )
             res = chat_model.chat_with_retry(message=messages)
             res_text = res.choices[0].message.content
-            pattern = r"Thoughts:\s*(.+?)\s*Status:\s*(\w+)"
-            match = re.search(pattern, res_text, re.DOTALL)
-            if match:
-                thoughts = match.group(1).strip()
-                judge = match.group(2).strip()
+            judge_pattern = r"Status:\s*([\S]+)"
+            thoughts_pattern=r"Thoughts:([\s\S]+)Status"
+            judge_match = re.search(judge_pattern, res_text, re.DOTALL)
+            thoughts_match = re.search(thoughts_pattern, res_text, re.DOTALL)
+            if judge_match:
+                judge = judge_match.group(1).strip()
+            else:
+                judge = res_text
+            if thoughts_match:
+                thoughts = thoughts_match.group(1).strip()
             else:
                 thoughts = "Thoughts extract failed."
-                judge = res_text
             reward = 1
             if "success" in judge.lower():
                 reward *= 1

@@ -1,14 +1,15 @@
-import logging
 import asyncio
+import logging
 import os
 import re
-from typing import Dict, Optional
 from contextlib import AsyncExitStack
-import copy
+
+from cachetools import LRUCache
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.sse import sse_client
 from mcp.client.stdio import stdio_client
-from cachetools import LRUCache
+
+from utils.my_types import McpServerInfo
 
 logger = logging.getLogger(__name__)
 
@@ -39,8 +40,8 @@ class MCPClient:
             max_sessions, on_evict=on_eviction
         )
         # for avoid error
-        self.task: Dict[str, asyncio.Task] = {}
-        self.stop_event: Dict[str, asyncio.Event] = {}
+        self.task: dict[str, asyncio.Task] = {}
+        self.stop_event: dict[str, asyncio.Event] = {}
 
     async def tool_execute(self, server_id, tool_name, tool_params):
         if server_id not in self.sessions:
@@ -69,34 +70,39 @@ class MCPClient:
                 command = config[server].get("command")
                 url = config[server].get("url")
                 exit_stack = AsyncExitStack()
-                if command:
-                    args = config[server].get("args", [])
-                    env = config[server].get("env", None)
-                    if env:
-                        env = self._process_env_vars(env)
-                    PROXY_ENV_LIST = [
-                        "HTTP_PROXY",
-                        "HTTPS_PROXY",
-                        "NO_PROXY",
-                        "http_proxy",
-                        "https_proxy",
-                        "no_proxy",
-                    ]
-                    for proxy_env in PROXY_ENV_LIST:
-                        if proxy_env in os.environ:
-                            env = env or {}
-                            env[proxy_env] = os.environ[proxy_env]
-                    await self.connect_to_server(
-                        server_id, command, args, env, exit_stack
-                    )
-                elif url:
-                    header = config[server].get("header", None)
-                    url = self._process_url_vars(url)
-                    await self.connect_to_server_sse(server_id, url, header, exit_stack)
-                else:
-                    raise ValueError(
-                        "Config file must contain either a command or a url for each server"
-                    )
+                try:
+                    if command:
+                        args = config[server].get("args", [])
+                        env = config[server].get("env", None)
+                        if env:
+                            env = self._process_env_vars(env)
+                        PROXY_ENV_LIST = [
+                            "HTTP_PROXY",
+                            "HTTPS_PROXY",
+                            "NO_PROXY",
+                            "http_proxy",
+                            "https_proxy",
+                            "no_proxy",
+                        ]
+                        for proxy_env in PROXY_ENV_LIST:
+                            if proxy_env in os.environ:
+                                env = env or {}
+                                env[proxy_env] = os.environ[proxy_env]
+                        await self.connect_to_server(
+                            server_id, command, args, env, exit_stack
+                        )
+                    elif url:
+                        header = config[server].get("header", None)
+                        url = self._process_url_vars(url)
+                        await self.connect_to_server_sse(
+                            server_id, url, header, exit_stack
+                        )
+                    else:
+                        raise ValueError(
+                            "Config file must contain either a command or a url for each server"
+                        )
+                except Exception as e:
+                    logger.error(f"Failed to connect to server {server_id}: {e}")
                 ready_event.set()
                 try:
                     stop_event = asyncio.Event()
@@ -110,7 +116,6 @@ class MCPClient:
                         await exit_stack.aclose()
                     except Exception as e:
                         logger.exception("Error during exit stack close", exc_info=e)
-                        pass
                     logger.info(f"MCP session {server} closed")
 
             asyncio.create_task(mcp_session_runner())
@@ -162,11 +167,9 @@ class MCPClient:
             logger.info(f"Connected to server {server_id}")
         except asyncio.TimeoutError:
             logger.error(f"Timeout connecting to SSE server {server_id}")
-            self.cleanup_server(server_id)
             raise
         except Exception as e:
             logger.error(f"Error connecting to SSE server {server_id}: {e}")
-            self.cleanup_server(server_id)
             raise
 
     async def connect_to_server(
@@ -174,7 +177,7 @@ class MCPClient:
         server_id: str,
         command: str,
         args: list,
-        env: Optional[dict] = None,
+        env: dict | None = None,
         exit_stack: AsyncExitStack = None,
     ):
         # Connect to an MCP server
@@ -190,14 +193,59 @@ class MCPClient:
             logger.info(f"Connected to server {server_id}.")
         except asyncio.TimeoutError:
             logger.error(f"Timeout connecting to server {server_id}")
-            await self.cleanup_server(server_id)
+            # await self.cleanup_server(server_id)
             raise
         except Exception as e:
             logger.error(f"Error connecting to server {server_id}: {e}")
-            await self.cleanup_server(server_id)
+            # await self.cleanup_server(server_id)
             raise
 
-    async def list_tools(self, server_id: str) -> Dict[str, Dict]:
+    async def collect_server_info(self, server_id: str):
+        # Collect information from a single server with error handling
+        try:
+            session: ClientSession = self.sessions.get(server_id)
+            if not session:
+                logger.error(f"No session found for server {server_id}")
+                return None
+
+            response = await asyncio.wait_for(
+                session.list_tools(), timeout=self.timeout
+            )
+            mcp_version = session._client_info.version
+            model_config = session._client_info.model_config
+            info = McpServerInfo(
+                server_name=server_id,
+                version=mcp_version,
+                model_config=model_config,
+                tools=response.tools,
+            )
+            return info.model_dump()
+        except asyncio.TimeoutError:
+            logger.error(f"Timeout collecting info from server {server_id}")
+            return None
+        except Exception as e:
+            logger.error(f"Error collecting info from server {server_id}: {e}")
+            return None
+
+    async def collect_all_info(self):
+        # Collect all information from all servers
+        all_info = {}
+        tasks = []
+
+        for server_id in self.sessions:
+            tasks.append(self.collect_server_info(server_id))
+
+        if tasks:
+            results = await asyncio.gather(*tasks, return_exceptions=True)
+            for i, (server_id, result) in enumerate(zip(self.sessions.keys(), results)):
+                if isinstance(result, Exception):
+                    logger.error(f"Exception for server {server_id}: {result}")
+                elif result is not None:
+                    all_info[server_id] = result
+
+        return all_info
+
+    async def list_tools(self, server_id: str) -> dict[str, dict]:
         """Lists all available tools from a connected MCP server."""
         if server_id not in self.sessions:
             logger.warning(f"Server {server_id} not connected, cannot list tools.")
@@ -215,19 +263,23 @@ class MCPClient:
             return {}
 
     async def cleanup_server(self, server_id: str):
-        self.stop_event[server_id].set()
-        await self.task[server_id]
+        ev = self.stop_event.get(server_id)
+        t = self.task.get(server_id)
+
+        if ev is not None:
+            ev.set()
+
+        if t is not None:
+            await asyncio.shield(t)
+
         self.sessions.pop(server_id, None)
         self.stop_event.pop(server_id, None)
         self.task.pop(server_id, None)
 
     async def cleanup(self):
-        """Clean up resources"""
-        try:
-            server_ids = copy.deepcopy(list(self.sessions.keys()))
-            for server_id in server_ids:
-                await self.cleanup_server(server_id)
-        except asyncio.TimeoutError:
-            logger.warning("Timeout during cleanup")
-        except Exception as e:
-            logger.error(f"Error during cleanup: {e}")
+        server_ids = list(self.sessions.keys())
+        for server_id in server_ids:
+            try:
+                await asyncio.shield(self.cleanup_server(server_id))
+            except Exception as e:
+                logger.error(f"cleanup_server failed for {server_id}: {e}")

@@ -1214,21 +1214,5 @@
             }
         },
         "category": "Finance"
-    },
-    {
-        "name": "Bing_CN_MCP",
-        "description": "一个基于 MCP (Model Context Protocol) 的中文必应搜索工具，可以直接通过 Claude 或其他支持 MCP 的 AI 来搜索必应并获取网页内容。",
-        "web": "https://github.com/yan5236/bing-cn-mcp-server",
-        "config": {
-            "mcpServers": {
-                "bing-cn-mcp": {
-                    "command": "npx",
-                    "args": [
-                        "bing-cn-mcp"
-                    ]
-                }
-            }
-        },
-        "category": "Discovery"
     }
 ]

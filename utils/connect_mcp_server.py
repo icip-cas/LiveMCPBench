@@ -4,230 +4,49 @@ import json
 import logging
 import os
 import pathlib
-import re
-from contextlib import AsyncExitStack
 from pathlib import Path
-from typing import Any, Dict, List, Optional
 
-from mcp import ClientSession, StdioServerParameters
-from mcp.client.sse import sse_client
-from mcp.client.stdio import stdio_client
 from tqdm.asyncio import tqdm
 
-from my_types import McpServerInfo
-from clogger import _set_logger
-
-
-class MCPClient:
-    def __init__(self, timeout: int = 30):
-        # Initialize session and client objects
-        self.sessions: Dict[str, ClientSession] = {}
-        self.exit_stack = AsyncExitStack()
-        self.timeout = timeout
-
-    async def config_connect(self, config: dict):
-        # Connect to an MCP server using a config file
-        config = config["mcpServers"]
-        for server in config:
-            command = config[server].get("command")
-            url = config[server].get("url")
-            if command:
-                args = config[server].get("args", [])
-                env = config[server].get("env", None)
-                if env:
-                    env = self._process_env_vars(env)
-                PROXY_ENV_LIST = [
-                    "HTTP_PROXY",
-                    "HTTPS_PROXY",
-                    "NO_PROXY",
-                    "http_proxy",
-                    "https_proxy",
-                    "no_proxy",
-                ]
-                for proxy_env in PROXY_ENV_LIST:
-                    if proxy_env in os.environ:
-                        env = env or {}
-                        env[proxy_env] = os.environ[proxy_env]
-                await self.connect_to_server(server, command, args, env)
-            elif url:
-                header = config[server].get("header", None)
-                url = self._process_url_vars(url)
-                await self.connect_to_server_sse(server, url, header)
-            else:
-                raise ValueError(
-                    "Config file must contain either a command or a url for each server"
-                )
-        logger.info(f"Successfully connected to servers: {list(config.keys())}")
-
-    def _process_env_vars(self, env: dict) -> dict:
-        # Process environment variables in config
-        processed_env = {}
-        for key in env:
-            match = re.findall(r"\${(.*)}", env[key])
-            processed_value = env[key]
-            for m in match:
-                if m in os.environ:
-                    processed_value = processed_value.replace(
-                        f"${{{m}}}", os.environ[m]
-                    )
-                else:
-                    raise ValueError(
-                        f"Environment variable {m} not found for env: {env}"
-                    )
-            processed_env[key] = processed_value
-        return processed_env
-
-    def _process_url_vars(self, url: str) -> str:
-        # Process environment variables in URL
-        match = re.findall(r"\${(.*)}", url)
-        processed_url = url
-        for m in match:
-            if m in os.environ:
-                processed_url = processed_url.replace(f"${{{m}}}", os.environ[m])
-            else:
-                raise ValueError(f"Environment variable {m} not found for URL: {url}")
-        return processed_url
-
-    async def connect_to_server_sse(self, server_id: str, url: str, header=None):
-        # Connect to the server using SSE
-        try:
-            sse_transport = await asyncio.wait_for(
-                self.exit_stack.enter_async_context(sse_client(url, header)),
-                timeout=self.timeout,
-            )
-            sse, write = sse_transport
-            session = await asyncio.wait_for(
-                self.exit_stack.enter_async_context(
-                    ClientSession(sse, write, self.timeout)
-                ),
-                timeout=self.timeout,
-            )
-            await asyncio.wait_for(session.initialize(), timeout=self.timeout)
-            self.sessions[server_id] = session
-            logger.info(f"Connected to server {server_id}")
-        except asyncio.TimeoutError:
-            logger.error(f"Timeout connecting to SSE server {server_id}")
-            raise
-        except Exception as e:
-            logger.error(f"Error connecting to SSE server {server_id}: {e}")
-            raise
-
-    async def connect_to_server(
-        self, server_id: str, command: str, args: list, env: Optional[dict] = None
-    ):
-        # Connect to an MCP server
-        try:
-            server_params = StdioServerParameters(command=command, args=args, env=env)
-            stdio_transport = await asyncio.wait_for(
-                self.exit_stack.enter_async_context(stdio_client(server_params)),
-                timeout=self.timeout,
-            )
-            stdio, write = stdio_transport
-            session = await asyncio.wait_for(
-                self.exit_stack.enter_async_context(ClientSession(stdio, write)),
-                timeout=self.timeout,
-            )
-            await asyncio.wait_for(session.initialize(), timeout=self.timeout)
-            self.sessions[server_id] = session
-            logger.info(f"Connected to server {server_id}.")
-        except asyncio.TimeoutError:
-            logger.error(f"Timeout connecting to server {server_id}")
-            raise
-        except Exception as e:
-            logger.error(f"Error connecting to server {server_id}: {e}")
-            raise
-
-    async def collect_server_info(self, server_id: str) -> Optional[Dict[str, Any]]:
-        # Collect information from a single server with error handling
-        try:
-            session = self.sessions.get(server_id)
-            if not session:
-                logger.error(f"No session found for server {server_id}")
-                return None
-
-            response = await asyncio.wait_for(
-                session.list_tools(), timeout=self.timeout
-            )
-            mcp_version = session._client_info.version
-            model_config = session._client_info.model_config
-            info = McpServerInfo(
-                server_name=server_id,
-                version=mcp_version,
-                model_config=model_config,
-                tools=response.tools,
-            )
-            return info.model_dump()
-        except asyncio.TimeoutError:
-            logger.error(f"Timeout collecting info from server {server_id}")
-            return None
-        except Exception as e:
-            logger.error(f"Error collecting info from server {server_id}: {e}")
-            return None
-
-    async def collect_all_info(self):
-        # Collect all information from all servers
-        all_info = {}
-        tasks = []
-
-        for server_id in self.sessions:
-            tasks.append(self.collect_server_info(server_id))
-
-        if tasks:
-            results = await asyncio.gather(*tasks, return_exceptions=True)
-            for i, (server_id, result) in enumerate(zip(self.sessions.keys(), results)):
-                if isinstance(result, Exception):
-                    logger.error(f"Exception for server {server_id}: {result}")
-                elif result is not None:
-                    all_info[server_id] = result
-
-        return all_info
-
-    async def cleanup(self):
-        # Clean up resources
-        try:
-            await asyncio.wait_for(self.exit_stack.aclose(), timeout=10)
-        except asyncio.TimeoutError:
-            logger.warning("Timeout during cleanup")
-        except Exception as e:
-            logger.error(f"Error during cleanup: {e}")
+from utils.clogger import _set_logger
+from utils.mcp_client import MCPClient
 
 
 async def process_single_server(
-    server_config: dict, semaphore: asyncio.Semaphore, timeout: int = 30
-) -> Optional[dict]:
+    idx: int, server_config: dict, semaphore: asyncio.Semaphore, timeout: int = 30
+) -> dict | None:
     # Process a single server with concurrency control
     async with semaphore:
         client = MCPClient(timeout=timeout)
         server_name = server_config.get("name", "unknown")
-
         try:
-            config = server_config["config"]
-            await asyncio.wait_for(client.config_connect(config), timeout=timeout * 2)
-            all_info = await client.collect_all_info()
+            async with asyncio.timeout(timeout):
+                config = server_config["config"]
+                await client.config_connect(config)
+                all_info = await client.collect_all_info()
 
             if all_info:
                 server_config["tools"] = all_info
-                return server_config
+                return idx, server_config
             else:
                 logger.warning(f"No tools found for server {server_name}")
-                return None
+                return idx, None
 
         except asyncio.TimeoutError:
             logger.error(f"Timeout processing server {server_name}")
-            return None
+            return idx, None
         except Exception as e:
             logger.error(f"Error processing server {server_name}: {e}")
-            return None
+            return idx, None
         finally:
-            await client.cleanup()
+            await asyncio.shield(client.cleanup())
 
 
 async def main_parallel(
-    servers_data: List[dict],
-    visited_tools: List[str],
+    servers_data: list[dict],
+    visited_tools: list[str],
     max_concurrent: int = 5,
     timeout: int = 30,
-    strict: bool = True,
 ) -> tuple:
     # Filter out already visited servers
     servers_to_process = [
@@ -245,18 +64,17 @@ async def main_parallel(
     semaphore = asyncio.Semaphore(max_concurrent)
     tasks = []
 
-    for server in servers_to_process:
-        task = process_single_server(server, semaphore, timeout)
+    for idx, server in enumerate(servers_to_process):
+        task = process_single_server(idx, server, semaphore, timeout)
         tasks.append(task)
 
     # Process with progress bar
     new_data = []
     error_tools = []
-    for i, coro in enumerate(tqdm.as_completed(tasks), 1):
+    for coro in tqdm.as_completed(tasks):
         try:
-            result = await coro
-            server_name = servers_to_process[i - 1]["name"]
-
+            idx, result = await coro
+            server_name = servers_to_process[idx]["name"]
             if result is not None:
                 new_data.append(result)
                 logger.info(f"Successfully processed server: {server_name}")
@@ -266,10 +84,13 @@ async def main_parallel(
 
         except Exception as e:
             server_name = (
-                servers_to_process[i - 1]["name"]
-                if i <= len(servers_to_process)
+                servers_to_process[idx]["name"]
+                if idx <= len(servers_to_process)
                 else "unknown"
             )
+            import traceback
+
+            logger.error(traceback.print_exc())
             logger.error(f"Unexpected error processing server {server_name}: {e}")
             error_tools.append(server_name)
 

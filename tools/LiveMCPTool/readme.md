@@ -1,0 +1,2 @@
+- `original_tools.json` contains the complete list of tools supported by **LiveMCPTool** before any modifications.
+- `all_config.json` contains the tools that have been verified to work correctly.

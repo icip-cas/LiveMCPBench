@@ -3,7 +3,6 @@ import json
 import logging
 import os
 import pathlib
-import re
 from collections import defaultdict
 
 import dotenv
@@ -11,6 +10,7 @@ from tqdm import tqdm
 
 from utils.clogger import _set_logger
 from utils.llm_api import ChatModel
+from evaluator.judge_parser import parse_judge_response
 
 dotenv.load_dotenv()
 _set_logger(
@@ -231,32 +231,14 @@ if __name__ == "__main__":
             )
             res = chat_model.chat_with_retry(message=messages)
             res_text = res.choices[0].message.content
-            judge_pattern = r"Status:\s*([\S]+)"
-            thoughts_pattern=r"Thoughts:([\s\S]+)Status"
-            judge_match = re.search(judge_pattern, res_text, re.DOTALL)
-            thoughts_match = re.search(thoughts_pattern, res_text, re.DOTALL)
-            if judge_match:
-                judge = judge_match.group(1).strip()
-            else:
-                judge = res_text
-            if thoughts_match:
-                thoughts = thoughts_match.group(1).strip()
-            else:
-                thoughts = "Thoughts extract failed."
-            reward = 1
-            if "success" in judge.lower():
-                reward *= 1
-            elif "failure" in judge.lower():
-                reward *= 0
-            else:
-                reward *= 0
+            parsed_judge = parse_judge_response(res_text)
             judge_results.append(
                 {
                     "task_id": task_id,
                     "question": entry["Question"],
-                    "judge": judge,
-                    "judge_reason": thoughts,
-                    "reward": reward,
+                    "judge": parsed_judge["judge"],
+                    "judge_reason": parsed_judge["thoughts"],
+                    "reward": parsed_judge["reward"],
                     "category": entry["category"],
                     "response": response,
                     "messages": entry["messages"],

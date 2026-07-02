@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
 import asyncio
+import sys
 import mcp.types as types
 from mcp.server.fastmcp import Context, FastMCP
 from baseline.mcp_copilot.router import Router, dump_to_yaml
@@ -15,7 +16,7 @@ def serve(config: dict[str, Any] | Path = Router._default_config_path) -> None:
     Args:
         config: MCP Server config for Router
     """
-    print("Indexing MCP servers and tools...")
+    print("Indexing MCP servers and tools...", file=sys.stderr, flush=True)
     asyncio.run(run_generation())
 
     @asynccontextmanager
@@ -24,7 +25,7 @@ def serve(config: dict[str, Any] | Path = Router._default_config_path) -> None:
         async with Router(config) as router:
             yield {"router": router}
 
-    print("Starting MCP Copilot server...")
+    print("Starting MCP Copilot server...", file=sys.stderr, flush=True)
     server = FastMCP("mcp-copilot", lifespan=copilot_lifespan)
 
     @server.tool(

@@ -132,6 +132,27 @@ Please return only the generated summary text, without any additional titles or 
                 formatted_params[param_name] = f"({param_type}) {param_desc}"
         return formatted_params
 
+    def _clean_text(self, text: str | None) -> str:
+        return text.strip() if isinstance(text, str) else ""
+
+    def _server_embedding_text(self, server_name: str, server_description: str) -> str:
+        description = self._clean_text(server_description)
+        if description:
+            return description
+        return f"Server: {server_name}"
+
+    def _tool_embedding_text(self, tool: types.Tool) -> str:
+        description = self._clean_text(tool.description)
+        if description:
+            return description
+
+        parts = [f"Tool: {tool.name}"]
+        parameters = self._format_tool_parameters(tool)
+        if parameters:
+            parts.append("Parameters:")
+            parts.extend(f"- {name}: {value}" for name, value in parameters.items())
+        return "\n".join(parts)
+
     async def generate(self) -> None:
         existing_servers_info = []
         existing_server_names = set()
@@ -169,18 +190,26 @@ Please return only the generated summary text, without any additional titles or 
                 types.Tool(**tool)
                 for tool in server["tools"].get(server_name, {}).get("tools", [])
             ]
-            server_description = server["description"]
+            server_description = server.get("description", "")
+            server_description_text = self._server_embedding_text(
+                server_name, server_description
+            )
             logger.info(f"Indexing server: {server_name}")
             try:
                 server_summary = await self._generate_summary(
-                    server_name, server_description, tools
+                    server_name, server_description_text, tools
+                )
+                server_summary_text = (
+                    self._clean_text(server_summary) or server_description_text
                 )
                 embedding_tasks = {
-                    "server_desc": self._get_embedding(server_description),
-                    "server_summary": self._get_embedding(server_summary),
+                    "server_desc": self._get_embedding(server_description_text),
+                    "server_summary": self._get_embedding(server_summary_text),
                 }
                 for i, tool in enumerate(tools):
-                    embedding_tasks[f"tool_{i}"] = self._get_embedding(tool.description)
+                    embedding_tasks[f"tool_{i}"] = self._get_embedding(
+                        self._tool_embedding_text(tool)
+                    )
 
                 embeddings_results = await asyncio.gather(*embedding_tasks.values())
                 embeddings = dict(zip(embedding_tasks.keys(), embeddings_results))
